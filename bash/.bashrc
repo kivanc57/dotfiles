@@ -10,6 +10,7 @@ PS1='[\u@\h \W]\$ '
 
 export VISUAL=nvim
 export EDITOR=nvim
+export STARSHIP_CONFIG=~/.config/starship/starship.toml
 
 fastfetch
 
