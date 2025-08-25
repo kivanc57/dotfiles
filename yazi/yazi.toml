@@ -11,6 +11,6 @@ prepend_rules = [
     { name = ".py", use = "edit" },
     { name = ".go", use = "edit" },
     { name = ".java", use = "edit" },
-    { name = ".sh", use = ".sh" },
+    { name = ".sh", use = "edit" },
 ]
 
