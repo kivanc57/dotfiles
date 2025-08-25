@@ -1,0 +1,16 @@
+[mgr]
+show_hidden = true
+show_symlink = true
+
+[open]
+edit = [
+    { run = "$EDITOR $@",  block = true, orphan = false }
+]
+
+prepend_rules = [
+    { name = ".py", use = "edit" },
+    { name = ".go", use = "edit" },
+    { name = ".java", use = "edit" },
+    { name = ".sh", use = "edit" },
+]
+

@@ -1,0 +1,9 @@
+[user]
+	email = kivanc.gordu@hotmail.com
+	name = Kivanc Gordu
+[core]
+	editor = nvim
+[init]
+	defaultBranch = main
+[push]
+	autoSetupRemote = true

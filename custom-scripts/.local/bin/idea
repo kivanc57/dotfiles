@@ -1,0 +1,2 @@
+#!/bin/bash
+nohup /opt/intellij/bin/idea.sh >/dev/null 2>&1 &
