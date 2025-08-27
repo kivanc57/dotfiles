@@ -5,14 +5,12 @@ return {
    "nvim-neotest/nvim-nio",
    "leoluz/nvim-dap-go",
    "mfussenegger/nvim-dap-python",
-   "nvim-java/nvim-java",
  },
   config = function ()
     local dap, dapui = require("dap"), require("dapui")
     require("dapui").setup()
     require("dap-go").setup()
     require("dap-python").setup("python3")
-    require("java")
 
   -- dap-ui config
   dap.listeners.before.attach.dapui_config = function()
