@@ -38,6 +38,23 @@ return {
     vim.keymap.set('n', '<leader>tb', function() require('dap').toggle_breakpoint() end, { desc = 'DAP: Toggle Breakpoint' })
 
     vim.keymap.set('n', '<leader>rl', function() require('dap').run_last() end, { desc = 'DAP: Run Last' })
-  end
+  
+    -- java config
+    dap.adapters.java = {
+      type = "server",
+      host = "127.0.0.1",
+      port = 5005,
+    }
+
+    dap.configurations.java = {
+      {
+        type = "java",
+        request = "launch",
+        name = "Debug Current File",
+        mainClass = function() return vim.fn.input("Main class > ") end,
+        projectName = function() return vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t") end,
+      },
+    }
+    end
 }
 

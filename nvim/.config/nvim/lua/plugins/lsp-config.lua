@@ -16,9 +16,7 @@ return {
   {
     "neovim/nvim-lspconfig",
     lazy = false,
-    dependencies = {'nvim-java/nvim-java'}, --java
     config = function()
-      require('java').setup() --java
 
       local cmp_nvim_lsp = require("cmp_nvim_lsp")
       local capabilities = vim.tbl_deep_extend(
@@ -35,7 +33,6 @@ return {
       lspconfig.bashls.setup({ capabilities = capabilities })
       lspconfig.gopls.setup({ capabilities = capabilities })
       lspconfig.pylyzer.setup({ capabilities = capabilities })
-      lspconfig.jdtls.setup({ capabilities = capabilities }) --java
 
       vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
       vim.keymap.set("n", "<leader>gd", vim.lsp.buf.definition, {})
