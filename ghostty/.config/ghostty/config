@@ -1,7 +1,7 @@
 theme = catppuccin-mocha
 font-family = CaskaydiaCove Nerd Font Mono
 font-size = 11
-background-opacity = 0.70
+background-opacity = 0.85
 gtk-titlebar = false
 #custom-shader = ghostty-shaders/retro-sun.glsl
 
