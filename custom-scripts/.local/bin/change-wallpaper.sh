@@ -39,8 +39,6 @@ background {
 }
 EOF
 
-  notify-send "Wallpaper Changed" -u "low"
-
   # Restart hyprpaper
   hyprpaper &
 
