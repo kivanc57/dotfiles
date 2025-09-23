@@ -5,7 +5,9 @@ return {
    "nvim-neotest/nvim-nio",
    "leoluz/nvim-dap-go",
    "mfussenegger/nvim-dap-python",
+   "vadimcn/codelldb"
  },
+
   config = function ()
     local dap, dapui = require("dap"), require("dapui")
     require("dapui").setup()
@@ -38,7 +40,7 @@ return {
     vim.keymap.set('n', '<leader>tb', function() require('dap').toggle_breakpoint() end, { desc = 'DAP: Toggle Breakpoint' })
 
     vim.keymap.set('n', '<leader>rl', function() require('dap').run_last() end, { desc = 'DAP: Run Last' })
-  
+
     -- java config
     dap.adapters.java = {
       type = "server",
@@ -55,6 +57,28 @@ return {
         projectName = function() return vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t") end,
       },
     }
-    end
+
+    -- lldb config
+    dap.adapters.codelldb = {
+        type = "executable",
+        command = "/home/kivanc57/.local/share/nvim/mason/packages/codelldb/extension/adapter/codelldb",
+    }
+    dap.configurations.cpp = {
+    {
+        name = "Launch file",
+        type = "codelldb",
+        request = "launch",
+        program = function()
+        return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+        end,
+        cwd = '${workspaceFolder}',
+        stopOnEntry = false,
+        },
+    }
+    dap.configurations.c = dap.configurations.cpp
+    dap.configurations.rust = dap.configurations.cpp
+
+
+   end
 }
 
