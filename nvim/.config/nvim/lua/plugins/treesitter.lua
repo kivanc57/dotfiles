@@ -25,7 +25,8 @@ return {
           "yaml",
           "toml",
           "xml",
-          "cpp"
+          "cpp",
+          "c",
         },
         highlight = { enable = true },
         indent = { enable = false },
