@@ -1,32 +1,29 @@
-#!/bin/bash
+#!/usr/bin/env bash
+set -euo pipefail
+
+WALL_DIR="$HOME/.config/backgrounds"
+LOCK_CONF="$HOME/.config/hypr/conf/lock-background.conf"
 
 while true; do
-  # Stop and reset hyprpaper
-  hyprctl hyprpaper unload all
-  killall hyprpaper 2>/dev/null
+  path_wallpaper="$(fd -t f -e png -e jpg -e jpeg -e webp . "$WALL_DIR" | shuf -n1 || true)"
 
-  path_hyperpaper="$HOME/.config/hypr/hyprpaper.conf"
+  if [[ -z "${path_wallpaper:-}" ]]; then
+    echo "No wallpapers found in: $WALL_DIR" >&2
+    sleep 10m
+    continue
+  fi
 
-  # Write base config
-  {
-    echo "splash = false"
-    echo "ipc = true"
-  } > "$path_hyperpaper"
+  # Get monitor names and set each explicitly (works even if fallback/wildcard is ignored)
+  while IFS= read -r mon; do
+    # Try the modern/standard dispatcher first
+    if ! hyprctl hyprpaper wallpaper "$mon,$path_wallpaper" >/dev/null 2>&1; then
+      # Fallback to reload semantics (older docs / versions)
+      hyprctl hyprpaper reload "$mon,$path_wallpaper" >/dev/null 2>&1 || true
+    fi
+  done < <(hyprctl monitors -j | jq -r '.[].name')
 
-  # Pick a random wallpaper
-  path_wallpaper=$(fd ".png|.jpg|.jpeg|.webp" "$HOME/.config/backgrounds" | shuf -n1)
-
-  # Get monitor names
-  monitors=$(hyprctl monitors -j | jq -r '.[].name')
-
-  # Add wallpapers for each monitor
-  echo "preload = $path_wallpaper" >> "$path_hyperpaper"
-  for monitor in $monitors; do
-    echo "wallpaper = $monitor,$path_wallpaper" >> "$path_hyperpaper"
-  done
-
-  # Create lockscreen background config
-  cat <<EOF > "$HOME/.config/hypr/conf/lock-background.conf"
+  # Update lockscreen background config (used next time you lock)
+  cat > "$LOCK_CONF" <<EOF
 # BACKGROUND
 background {
     monitor =
@@ -35,14 +32,10 @@ background {
     brightness = 0.5
     vibrancy = 0.2
     vibrancy_darkness = 0.2
-    path = $path_wallpaper   # supports png, jpg, webp (no animations, though)
+    path = $path_wallpaper
 }
 EOF
 
-  # Restart hyprpaper
-  hyprpaper &
-
-  # Wait 10 minutes before cycling again
   sleep 10m
 done
 
