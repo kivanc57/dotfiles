@@ -1,5 +1,8 @@
 return {
    "nvimtools/none-ls.nvim",
+    dependencies = {
+      "koalaman/shellcheck", -- required for shellcheck
+    },
    config = function()
      local null_ls = require("null-ls")
      null_ls.setup({
