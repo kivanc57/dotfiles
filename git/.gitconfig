@@ -9,3 +9,10 @@
 	autoSetupRemote = true
 [color]
 	ui = auto
+[pull]
+	ff = only
+	rebase = true
+[rebase]
+	autoStash = true
+[rerere]
+	enabled = true
