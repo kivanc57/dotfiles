@@ -1,7 +1,7 @@
 theme = catppuccin-mocha
 font-family = "JetBrains Mono NL Bold"
 font-size = 10
-background-opacity = 0.85
+background-opacity = 0.70
 background-blur = true
 gtk-titlebar = false
 command=/home/kivanc57/.config/ghostty/ghostty-tmux.sh
