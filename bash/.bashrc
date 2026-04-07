@@ -1,7 +1,3 @@
-#
-# ~/.bashrc
-#
-
 eval "$(starship init bash)"
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
@@ -20,16 +16,4 @@ if [ -f ~/.bash_aliases ]; then
 fi
 
 export PATH="$HOME/.local/bin:$PATH"
-
-
-# yazi setup
-# - 'y' alias
-# - cd to last dir
-function y() {
-	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
-	command yazi "$@" --cwd-file="$tmp"
-	IFS= read -r -d '' cwd < "$tmp"
-	[ "$cwd" != "$PWD" ] && [ -d "$cwd" ] && builtin cd -- "$cwd"
-	rm -f -- "$tmp"
-}
 
