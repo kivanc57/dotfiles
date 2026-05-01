@@ -32,7 +32,7 @@ return {
       lspconfig.lua_ls.setup({ capabilities = capabilities })
       lspconfig.bashls.setup({ capabilities = capabilities })
       lspconfig.gopls.setup({ capabilities = capabilities })
-      lspconfig.pylyzer.setup({ capabilities = capabilities })
+      lspconfig.pyright.setup({ capabilities = capabilities })
       lspconfig.clangd.setup({ capabilities = capabilities })
 
       vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
