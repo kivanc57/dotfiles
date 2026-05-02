@@ -7,33 +7,40 @@ return {
     end,
   },
   {
-    "williamboman/mason-lspconfig.nvim",
+    "mason-org/mason-lspconfig.nvim",
     lazy = false,
     opts = {
-      auto_install = true,
+      automatic_installation = true,
+      automatic_enable = false,
     },
   },
   {
     "neovim/nvim-lspconfig",
     lazy = false,
     config = function()
-
       local cmp_nvim_lsp = require("cmp_nvim_lsp")
+
       local capabilities = vim.tbl_deep_extend(
         "force",
-        {},
         vim.lsp.protocol.make_client_capabilities(),
         cmp_nvim_lsp.default_capabilities()
       )
 
-      local lspconfig = require("lspconfig")
-      local util = lspconfig.util
+      local servers = {
+        "lua_ls",
+        "bashls",
+        "gopls",
+        "pyright",
+        "clangd",
+      }
 
-      lspconfig.lua_ls.setup({ capabilities = capabilities })
-      lspconfig.bashls.setup({ capabilities = capabilities })
-      lspconfig.gopls.setup({ capabilities = capabilities })
-      lspconfig.pyright.setup({ capabilities = capabilities })
-      lspconfig.clangd.setup({ capabilities = capabilities })
+      for _, server in ipairs(servers) do
+        vim.lsp.config(server, {
+          capabilities = capabilities,
+        })
+      end
+
+      vim.lsp.enable(servers)
 
       vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
       vim.keymap.set("n", "<leader>gd", vim.lsp.buf.definition, {})
@@ -44,3 +51,4 @@ return {
     end,
   },
 }
+
