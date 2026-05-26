@@ -7,6 +7,7 @@ PS1='[\u@\h \W]\$ '
 export VISUAL=nvim
 export EDITOR=nvim
 export MANPAGER="sh -c 'bat -l man -p'"
+
 fastfetch
 
 . "$HOME/.local/bin/env"

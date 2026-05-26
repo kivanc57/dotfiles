@@ -16,13 +16,17 @@ rm() {
     echo "Trashed: $*"
 }
 
-t() {
-    setsid -f nautilus "$HOME/Thesis" >/dev/null 2>&1
+wp() {
+    setsid -f nautilus "${HOME}/Workplace" >/dev/null 2>%1
+}
+
+ns() {
+    cd "${HOME}/notes/" >/dev/null 2>%1 || exit
 }
 
 # search like a pro
 # https://www.howtogeek.com/the-alternative-cli-tools-i-immediately-install-on-linux/
-s () {
+s() {
   fzf --ansi --disabled \
       --bind "change:reload:command \
           rg --line-number --no-heading --color=always --smart-case {q} \
@@ -40,7 +44,7 @@ y() {
     tmp="$(mktemp -t "yazi-cwd.XXXXXX")" || return
     command yazi "$@" --cwd-file="$tmp"
     cwd="$(cat "$tmp")"
-    [ "$cwd" != "$PWD" ] && [ -d "$cwd" ] && builtin cd -- "$cwd"
+    [ "$cwd" != "$PWD" ] && [ -d "$cwd" ] && builtin cd -- "$cwd" || exit
     command rm -f -- "$tmp"
 }
 
