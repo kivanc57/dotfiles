@@ -2,6 +2,7 @@
 # ~/.bash_profile
 #
 
-[[ -f ~/.bashrc ]] && . ~/.bashrc
+[[ -f ~/.bashrc ]] && . "${HOME}/.bashrc"
 
-. "$HOME/.local/bin/env"
+. "${HOME}/.local/bin/env"
+

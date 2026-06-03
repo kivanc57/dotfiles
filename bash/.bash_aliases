@@ -17,11 +17,11 @@ rm() {
 }
 
 wp() {
-    setsid -f nautilus "${HOME}/Workplace" >/dev/null 2>%1
+    setsid -f nautilus "${HOME}/Workplace" >/dev/null 2>&1 || return
 }
 
 ns() {
-    cd "${HOME}/notes/" >/dev/null 2>%1 || exit
+    cd "${HOME}/notes/" >/dev/null 2>&1 || return
 }
 
 # search like a pro

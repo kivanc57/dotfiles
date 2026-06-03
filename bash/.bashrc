@@ -13,7 +13,7 @@ fastfetch
 . "$HOME/.local/bin/env"
 
 if [ -f ~/.bash_aliases ]; then
-. ~/.bash_aliases
+. "${HOME}/.bash_aliases"
 fi
 
 export PATH="$HOME/.local/bin:$PATH"
