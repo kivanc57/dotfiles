@@ -8,13 +8,13 @@ export VISUAL=nvim
 export EDITOR=nvim
 export MANPAGER="sh -c 'bat -l man -p'"
 
-fastfetch
-
-. "$HOME/.local/bin/env"
+. "${HOME}/.local/bin/env"
 
 if [ -f ~/.bash_aliases ]; then
 . "${HOME}/.bash_aliases"
 fi
 
 export PATH="$HOME/.local/bin:$PATH"
+
+fastfetch
 

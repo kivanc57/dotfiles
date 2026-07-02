@@ -17,11 +17,15 @@ rm() {
 }
 
 wp() {
-    setsid -f nautilus "${HOME}/Workplace" >/dev/null 2>&1 || return
+    cd "${HOME}/Workplace" &>/dev/null || return
 }
 
 ns() {
-    cd "${HOME}/notes/" >/dev/null 2>&1 || return
+    cd "${HOME}/notes" &>/dev/null || return
+}
+
+toolbox() {
+    cd "${HOME}/Workplace/Repos/devops-toolbox" &>/dev/null || return
 }
 
 # search like a pro
