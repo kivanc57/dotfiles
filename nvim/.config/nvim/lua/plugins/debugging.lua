@@ -44,20 +44,49 @@ return {
     vim.keymap.set("n", "<leader>dq", function() require("dap").terminate() require("dapui").close() end)
 
     -- java config
-    dap.adapters.java = {
-      type = "server",
-      host = "127.0.0.1",
-      port = 5005,
+    --dap.adapters.java = {
+      --type = "server",
+      --host = "127.0.0.1",
+      --port = 5005,
+    --}
+
+    --dap.configurations.java = {
+      --{
+        --type = "java",
+        --request = "launch",
+        --name = "Debug Current File",
+        --mainClass = function() return vim.fn.input("Main class > ") end,
+        --projectName = function() return vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t") end,
+      --},
+    --}
+
+    -- shell
+    dap.adapters.bashdb = {
+      type = 'executable';
+      command = vim.fn.stdpath("data") .. '/mason/packages/bash-debug-adapter/bash-debug-adapter';
+      name = 'bashdb';
     }
 
-    dap.configurations.java = {
+    dap.configurations.sh = {
       {
-        type = "java",
-        request = "launch",
-        name = "Debug Current File",
-        mainClass = function() return vim.fn.input("Main class > ") end,
-        projectName = function() return vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t") end,
-      },
+        type = 'bashdb';
+        request = 'launch';
+        name = "Launch file";
+        showDebugOutput = true;
+        pathBashdb = vim.fn.stdpath("data") .. '/mason/packages/bash-debug-adapter/extension/bashdb_dir/bashdb';
+        pathBashdbLib = vim.fn.stdpath("data") .. '/mason/packages/bash-debug-adapter/extension/bashdb_dir';
+        trace = true;
+        file = "${file}";
+        program = "${file}";
+        cwd = '${workspaceFolder}';
+        pathCat = "cat";
+        pathBash = "/opt/homebrew/bin/bash";
+        pathMkfifo = "mkfifo";
+        pathPkill = "pkill";
+        args = {};
+        env = {};
+        terminalKind = "integrated";
+        }
     }
 
     -- lldb config

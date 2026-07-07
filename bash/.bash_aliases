@@ -1,3 +1,9 @@
+export VISUAL=nvim
+export EDITOR=nvim
+export MANPAGER="sh -c 'bat -l man -p'"
+
+fastfetch
+
 # shortcuts
 alias n=nvim
 alias c="cd ~/.config"
