@@ -42,12 +42,14 @@ return {
 
       vim.lsp.enable(servers)
 
-      vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
-      vim.keymap.set("n", "<leader>gd", vim.lsp.buf.definition, {})
-      vim.keymap.set("n", "<leader>gr", vim.lsp.buf.references, {})
-      vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, {})
-      vim.keymap.set("n", "<leader>gf", vim.lsp.buf.format, {})
-      vim.keymap.set("n", "<space>rn", vim.lsp.buf.rename, {})
+      
+      vim.keymap.set("n", "K", vim.lsp.buf.hover, { desc = "Hover" })
+      vim.keymap.set("n", "<leader>gd", vim.lsp.buf.definition, { desc = "Go Definition" })
+      vim.keymap.set("n", "<leader>gr", vim.lsp.buf.references, { desc = "References" })
+      vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "Code Action" })
+      vim.keymap.set("n", "<leader>gf", vim.lsp.buf.format, { desc = "Format" })
+      vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, { desc = "Rename" })
+
     end,
   },
 }
