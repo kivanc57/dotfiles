@@ -41,7 +41,7 @@ return {
 
     vim.keymap.set('n', '<leader>rl', function() require('dap').run_last() end, { desc = 'DAP: Run Last' })
 
-    vim.keymap.set("n", "<leader>dq", function() require("dap").terminate() require("dapui").close() end)
+    vim.keymap.set("n", "<leader>dq", function() require("dap").terminate() require("dapui").close() end, { desc = 'DAP: Quit' })
 
     -- java config
     --dap.adapters.java = {

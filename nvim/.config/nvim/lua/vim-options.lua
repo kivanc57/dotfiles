@@ -7,19 +7,15 @@ vim.opt.shiftwidth = 4
 vim.opt.autoindent = true
 vim.opt.smartindent = true
 
+vim.wo.number = true
 vim.opt.swapfile = false
 vim.g.loaded_ruby_provider = 0
 vim.g.loaded_node_provider = 0
 vim.g.loaded_perl_provider = 0
 
--- Navigate vim panes better
-vim.keymap.set('n', '<c-k>', ':wincmd k<CR>')
-vim.keymap.set('n', '<c-j>', ':wincmd j<CR>')
-vim.keymap.set('n', '<c-h>', ':wincmd h<CR>')
-vim.keymap.set('n', '<c-l>', ':wincmd l<CR>')
-
-vim.keymap.set('n', '<leader>h', ':nohlsearch<CR>')
-vim.wo.number = true
+vim.keymap.set("n", "<leader>h", "<cmd>nohlsearch<CR>", {
+  desc = "Clear Search Highlight",
+})
 
 vim.keymap.set("v", "<C-j>", ":m '>+1<CR>gv=gv", { silent = true })
 vim.keymap.set("v", "<C-k>", ":m '<-2<CR>gv=gv", { silent = true })
