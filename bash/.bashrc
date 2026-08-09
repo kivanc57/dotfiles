@@ -4,17 +4,13 @@ eval "$(starship init bash)"
 
 PS1='[\u@\h \W]\$ '
 
+fastfetch
+
 export VISUAL=nvim
 export EDITOR=nvim
-export MANPAGER="sh -c 'bat -l man -p'"
-
-. "${HOME}/.local/bin/env"
+export PATH="${HOME}/.local/bin:${PATH}"
 
 if [ -f ~/.bash_aliases ]; then
 . "${HOME}/.bash_aliases"
 fi
-
-export PATH="$HOME/.local/bin:$PATH"
-
-fastfetch
 
