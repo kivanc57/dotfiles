@@ -1,0 +1,4 @@
+[submodule "backgrounds"]
+	path = backgrounds
+	url = git@github.com:kivanc57/backgrounds.git
+
