@@ -1,7 +1,3 @@
-export VISUAL=nvim
-export EDITOR=nvim
-export MANPAGER="sh -c 'bat -l man -p'"
-
 # navigation
 alias n=nvim
 alias c="cd ~/.config"
@@ -10,21 +6,21 @@ alias d="cd ~/dotfiles"
 alias r="cd ~/Workplace/Repos"
 
 # coloring
-alias ls='ls --color=auto'
 alias grep='grep --color=auto'
 alias diff='diff --color=auto'
 alias ls='ls --color=auto'
 alias ll='ls -lh --color=auto'
 alias la='ls -lah --color=auto'
-alias grep='grep --color=auto'
-alias diff='diff --color=auto'
+alias l.='ls -d .* --color=auto'
 
 # safety
 alias cp='cp -i'
 alias mv='mv -i'
-alias rm='rm -I'
 
-# wrappers
+# improvement
+alias which='(alias; declare -f) | /usr/bin/which --tty-only --read-alias --read-functions --show-tilde --show-dot'
+
+# functions
 rm() {
     trash-put "$@"
     echo "Trashed: $*"
@@ -40,6 +36,10 @@ ns() {
 
 toolbox() {
     cd "${HOME}/Workplace/Repos/devops-toolbox" &>/dev/null || return
+}
+
+utc() {
+    date -u +"%Y-%m-%d-%H-%M-%S"
 }
 
 # search like a pro
