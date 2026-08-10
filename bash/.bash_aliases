@@ -2,7 +2,7 @@ export VISUAL=nvim
 export EDITOR=nvim
 export MANPAGER="sh -c 'bat -l man -p'"
 
-# shortcuts
+# navigation
 alias n=nvim
 alias c="cd ~/.config"
 alias cn="cd ~/.config/nvim/lua/plugins"
@@ -13,6 +13,16 @@ alias r="cd ~/Workplace/Repos"
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
 alias diff='diff --color=auto'
+alias ls='ls --color=auto'
+alias ll='ls -lh --color=auto'
+alias la='ls -lah --color=auto'
+alias grep='grep --color=auto'
+alias diff='diff --color=auto'
+
+# safety
+alias cp='cp -i'
+alias mv='mv -i'
+alias rm='rm -I'
 
 # wrappers
 rm() {
