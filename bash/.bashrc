@@ -10,7 +10,10 @@ export VISUAL=nvim
 export EDITOR=nvim
 export PATH="${HOME}/.local/bin:${PATH}"
 
-if [ -f ~/.bash_aliases ]; then
-. "${HOME}/.bash_aliases"
-fi
+sources=(".bash_aliases" ".bash_work")
+for src in "${sources[@]}"
+do
+    src_path="${HOME}/${src}"  
+    [ -f "${src_path}" ] && source "${src_path}"
+done
 

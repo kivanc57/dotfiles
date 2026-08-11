@@ -11,7 +11,7 @@ alias diff='diff --color=auto'
 alias ls='ls --color=auto'
 alias ll='ls -lh --color=auto'
 alias la='ls -lah --color=auto'
-alias l.='ls -d .* --color=auto'
+alias l.='ls -d --color=auto .*'
 
 # safety
 alias cp='cp -i'
@@ -21,7 +21,7 @@ alias mv='mv -i'
 alias which='(alias; declare -f) | /usr/bin/which --tty-only --read-alias --read-functions --show-tilde --show-dot'
 
 # functions
-rm() {
+rmt() {
     trash-put "$@"
     echo "Trashed: $*"
 }
